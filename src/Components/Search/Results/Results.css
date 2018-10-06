@@ -1,0 +1,8 @@
+
+.characterCard {
+    padding: 10px;
+    margin: 30px;
+    width: 300px;
+    background: lightblue;
+    border: solid 2px black;
+}

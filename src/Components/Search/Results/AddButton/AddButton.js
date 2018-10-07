@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 export default class AddButton extends Component {
   render() {
-      console.log('th.prp',this.props.person.id);
-      
     return (
       <div>
         <button className="button" onClick={() => this.props.click(this.props.person)}>Add to favorites</button>

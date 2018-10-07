@@ -13,11 +13,12 @@ export default class Search extends Component {
             character: [],
             userInput: "",
             allPages: [],
+            // favorites: []
 
         }
         this.getAllData = this.getAllData.bind(this)
         this.handleClick = this.handleClick.bind(this)
-        this.getFunction = this.getFunction.bind(this)
+        this.displayFavorites = this.displayFavorites.bind(this)
     }
 
     handleChange(val) {
@@ -25,22 +26,24 @@ export default class Search extends Component {
     }
 
     handleClick(person) {
-        console.log('click person', person);
-        // axios.post('/data', {person: person})
-        // .then(res => {console.log('res.data', res.data)});
+        axios.post('/data', {person: person})
+        .then(res => {
+            let favArr = [];
+            for (let i = 0; i < res.data.length; i++) {
+                favArr.push(res.data[i]);
+                console.log('faveArr', favArr)
+            }
+        });
     }
 
-    getFunction() {
+    displayFavorites() {
         axios.get('/data').then(res => {
-            console.log('res.data',res.data);
-            
+            this.setState({ character: res.data })
         })
-        
     }
 
     componentDidMount() {
         this.getAllData();
-        this.getFunction();
     }
 
    
@@ -62,16 +65,9 @@ export default class Search extends Component {
 
     getCharacter() {
         axios.get("https://rickandmortyapi.com/api/character/").then(res => {
-            console.log("getCharacter res.data",res.data)
             this.setState({
                 character: res.data.results
             })
-
-        // filterNames(e){
-        //     this.setState({users: this.state.store.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase()))})
-        //   }
-        
-            // this.setState( {character: this.state.allPages.filter(person => (person.name === this.state.userInput) )});
             this.setState( {character: this.state.allPages.filter(person => person.name.toLowerCase().includes(this.state.userInput.toLowerCase()) )});
         })
     }
@@ -116,6 +112,7 @@ export default class Search extends Component {
                 </input>
                 <button onClick={() => this.getCharacter()}>Search</button>
                 <button onClick={() => this.getRandomCharacter()}>Random Character</button>
+                <button onClick={() => this.displayFavorites()}>Favorites</button>
                 <div>
                     <div className="results">{result}</div>
                 </div>

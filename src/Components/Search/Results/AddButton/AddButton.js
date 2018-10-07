@@ -6,7 +6,6 @@ export default class AddButton extends Component {
       
     return (
       <div>
-        {/* <button onClick={this.props.click}>Add to favorites</button> */}
         <button className="button" onClick={() => this.props.click(this.props.person)}>Add to favorites</button>
       </div>
     )

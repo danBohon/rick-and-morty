@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import axios from "axios";
 
 import "./Search.css";
@@ -16,6 +17,7 @@ export default class Search extends Component {
         }
         this.getAllData = this.getAllData.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.getFunction = this.getFunction.bind(this)
     }
 
     handleChange(val) {
@@ -23,13 +25,22 @@ export default class Search extends Component {
     }
 
     handleClick(person) {
-        // console.log('click person', person);
-        axios.post('/data', {person: person})
-        .then(res => {console.log('res.data', res.data)});
+        console.log('click person', person);
+        // axios.post('/data', {person: person})
+        // .then(res => {console.log('res.data', res.data)});
+    }
+
+    getFunction() {
+        axios.get('/data').then(res => {
+            console.log('res.data',res.data);
+            
+        })
+        
     }
 
     componentDidMount() {
         this.getAllData();
+        this.getFunction();
     }
 
    
@@ -108,14 +119,6 @@ export default class Search extends Component {
                 <div>
                     <div className="results">{result}</div>
                 </div>
-                {/* <Results 
-                        image={character.image}
-                        name={character.name}
-                        species={character.species}
-                        status={character.status}
-                        id={character.id}
-                /> */}
-
         </div>
     )
   }

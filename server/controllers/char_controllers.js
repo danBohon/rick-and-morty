@@ -1,4 +1,4 @@
-let favorites = [];
+// let favorites = ["favorite"];
 
 module.exports = {
     create: (req, res) => {
@@ -8,9 +8,11 @@ module.exports = {
         
         res.json(favorites)
     }
-    // create: (req, res) => {
-
+}
+    // read: (req, res) => {
+    //     res.json(favorites);
     // }
+    // // }
     // create: (req, res) => {
 
     // }
@@ -20,7 +22,7 @@ module.exports = {
 
     
 
-}
+// }
 
 
 

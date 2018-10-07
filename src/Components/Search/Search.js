@@ -11,15 +11,22 @@ export default class Search extends Component {
         this.state = {
             character: [],
             userInput: "",
-            allPages: []
+            allPages: [],
+
         }
         this.getAllData = this.getAllData.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handleChange(val) {
         this.setState({ userInput: val })
     }
 
+    handleClick(person) {
+        // console.log('click person', person);
+        axios.post('/data', {person: person})
+        .then(res => {console.log('res.data', res.data)});
+    }
 
     componentDidMount() {
         this.getAllData();
@@ -81,7 +88,9 @@ export default class Search extends Component {
                         name={n.name}
                         species={n.species}
                         status={n.status}
+                        click={this.handleClick}
                         id={n.id}
+                        person={n}
                         />
                     </div>
                 )

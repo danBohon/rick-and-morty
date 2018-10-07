@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const charControl = require('./controllers/char_controllers')
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -11,5 +13,7 @@ app.get('/data', (req, res) => {
     res.status(200).json(data)
 })
 
-const PORT = 3334;
+app.post('/data', charControl.create);
+
+const PORT = 3333;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));

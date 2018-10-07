@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Results.css';
+import AddButton from './AddButton/AddButton';
 
 export default function Results(props) {
 
@@ -10,7 +11,10 @@ export default function Results(props) {
         <div>{props.name}</div>
         <div>{props.species}</div>
         <div>{props.status}</div>
-        <div>{props.id}</div>
+        <AddButton
+          click={props.click}
+          person={props.person}
+        />
     </div>
   )
 }

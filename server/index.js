@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 app.post('/data', charControl.create);
 app.get('/data', charControl.read)
+app.delete('/data/:id', charControl.delete)
 
 
 

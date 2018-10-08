@@ -1,4 +1,5 @@
 let favorites = [];
+id = 0;
 
 module.exports = {
     create: (req, res) => {
@@ -6,10 +7,20 @@ module.exports = {
         favorites.push(person);
         res.json(favorites)
     },
+
     read: (req, res) => {
         res.json( favorites );
+    },
+
+    delete: (req, res) => {
+        const deleteID = req.params.id;
+        console.log('deleteID', deleteID);
+        
+        let characterIndex = favorites.findIndex( person => person.id === parseInt(deleteID) );
+        favorites.splice(characterIndex, 1);
+        res.json( favorites );
     }
-}
+ }
 
     
 //--------------------------
@@ -17,7 +28,12 @@ module.exports = {
 // let messages = [];
 // let id = 0;
 
-
+//     delete: (req, res) => {
+//         const deleteID = req.params.id;
+//         let messageIndex = messages.findIndex( message => message.id === parseInt(deleteID) );
+//         messages.splice(messageIndex, 1);
+//         res.status(200).send( messages );
+//     }
 //     update: (req, res) => {
 //         const {text} = req.body;
 //         const updateID = req.params.id;
@@ -31,11 +47,6 @@ module.exports = {
 //         };
 //         res.status(200).send( messages );
 //     },
-//     delete: (req, res) => {
-//         const deleteID = req.params.id;
-//         let messageIndex = messages.findIndex( message => message.id === parseInt(deleteID) );
-//         messages.splice(messageIndex, 1);
-//         res.status(200).send( messages );
-//     }
+//     
     
 // };

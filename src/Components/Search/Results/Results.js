@@ -12,8 +12,10 @@ export default function Results(props) {
         <div>{props.species}</div>
         <div>{props.status}</div>
         <AddButton
-          click={props.click}
+          addClick={props.addClick}
+          deleteClick={props.deleteClick}
           person={props.person}
+          favorites={props.favorites}
         />
     </div>
   )

@@ -13,32 +13,48 @@ export default class Search extends Component {
             character: [],
             userInput: "",
             allPages: [],
-            // favorites: []
+            favorites: [],
+            // show: true 
 
         }
+        // this.toggleButton = this.toggleButton.bind(this) 
         this.getAllData = this.getAllData.bind(this)
-        this.handleClick = this.handleClick.bind(this)
+        this.addFav = this.addFav.bind(this)
         this.displayFavorites = this.displayFavorites.bind(this)
+        this.deleteFav = this.deleteFav.bind(this)
     }
 
     handleChange(val) {
         this.setState({ userInput: val })
     }
 
-    handleClick(person) {
+    addFav(person) {
         axios.post('/data', {person: person})
         .then(res => {
-            let favArr = [];
-            for (let i = 0; i < res.data.length; i++) {
-                favArr.push(res.data[i]);
-                console.log('faveArr', favArr)
-            }
+            // let favArr = [];
+            // for (let i = 0; i < res.data.length; i++) {
+            //     favArr.push(res.data[i]);
+            // }
+            this.setState( { favorites: res.data } )
+            // console.log(this.state.favorites);
+            
         });
     }
 
     displayFavorites() {
         axios.get('/data').then(res => {
             this.setState({ character: res.data })
+        })
+    }
+
+    deleteFav (id) {
+        axios.delete(`/data/${id.id}`)
+        .then(res => { 
+            this.setState({ 
+                character: res.data,
+                favorites: res.data
+            })
+            // console.log(this.state.favorites);
         })
     }
 
@@ -76,7 +92,6 @@ export default class Search extends Component {
     getRandomCharacter() {
         let id = Math.floor(Math.random() * (493 - 1) + 1)
         axios.get(`https://rickandmortyapi.com/api/character/${id}`).then(res => {
-            console.table(res.data)
             this.setState({
                 character: [res.data]
               })
@@ -95,9 +110,11 @@ export default class Search extends Component {
                         name={n.name}
                         species={n.species}
                         status={n.status}
-                        click={this.handleClick}
+                        addClick={this.addFav}
+                        deleteClick={this.deleteFav}
                         id={n.id}
                         person={n}
+                        favorites={this.state.favorites}
                         />
                     </div>
                 )

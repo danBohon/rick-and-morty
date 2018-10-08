@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 
 import "./Search.css";
+import headerImg from '../../media/svg-file-rick-and-morty.png';
 
 import Results from "./Results/Results";
 
@@ -126,18 +127,18 @@ export default class Search extends Component {
     return (
         <div className="component">
             <header>
-                <h1>SHOW ME WHAT YOU GOT</h1>
+                <img className="headerImg" src={headerImg} alt="Rick and Morty Image"/>
                 <div className ="search-bar">
-                    <input 
+                    <input className="search input" 
                         onChange={ (e) => this.handleChange(e.target.value) }
                         placeholder="Rick Sanchez">
                     </input>
-                    <button onClick={() => this.getCharacter()}>Search</button>
-                    <button onClick={() => this.getRandomCharacter()}>Random Character</button>
-                    <button onClick={() => this.displayFavorites()}>Favorites</button>
+                    <button className="search" onClick={() => this.getCharacter()}>Search</button>
+                    <button className="search" onClick={() => this.getRandomCharacter()}>Random Character</button>
+                    <button className="search" onClick={() => this.displayFavorites()}>Favorites</button>
                 </div>
             </header>
-            <div>
+            <div className="parent">
                 <div className="results">{result}</div>
             </div>
         </div>

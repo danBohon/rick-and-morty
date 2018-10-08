@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
+import './AddButton.css'
 
 export default class AddButton extends Component {
     constructor(props) {
         super();
     }
+
     handleDelete() {
         this.props.deleteClick(this.props.person);
-        // this.showButton();
-        // this.setState( { show: true })
     }
+
     handleAdd() {
         this.props.addClick(this.props.person); 
-        // this.showButton();
-        // this.setState( {show: !true })
     }
+
   render() {
     return (
       <div>

@@ -14,7 +14,6 @@ export default class Search extends Component {
             userInput: "",
             allPages: [],
             favorites: [],
-            // show: true 
 
         }
         // this.toggleButton = this.toggleButton.bind(this) 
@@ -60,6 +59,10 @@ export default class Search extends Component {
 
     componentDidMount() {
         this.getAllData();
+        axios.get('/data').then(res => {
+            this.setState({ favorites: res.data })
+        })
+
     }
 
    
@@ -121,18 +124,22 @@ export default class Search extends Component {
             })
         
     return (
-        <div className="Component">
+        <div className="component">
+            <header>
                 <h1>SHOW ME WHAT YOU GOT</h1>
-                <input 
-                    onChange={ (e) => this.handleChange(e.target.value) }
-                    placeholder="Rick Sanchez">
-                </input>
-                <button onClick={() => this.getCharacter()}>Search</button>
-                <button onClick={() => this.getRandomCharacter()}>Random Character</button>
-                <button onClick={() => this.displayFavorites()}>Favorites</button>
-                <div>
-                    <div className="results">{result}</div>
+                <div className ="search-bar">
+                    <input 
+                        onChange={ (e) => this.handleChange(e.target.value) }
+                        placeholder="Rick Sanchez">
+                    </input>
+                    <button onClick={() => this.getCharacter()}>Search</button>
+                    <button onClick={() => this.getRandomCharacter()}>Random Character</button>
+                    <button onClick={() => this.displayFavorites()}>Favorites</button>
                 </div>
+            </header>
+            <div>
+                <div className="results">{result}</div>
+            </div>
         </div>
     )
   }

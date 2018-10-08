@@ -1,8 +1,15 @@
 
 .characterCard {
+    color: rgb(255, 0, 157);
     padding: 10px;
     margin: 30px;
     width: 300px;
-    background: lightblue;
+    background: rgba(6, 63, 80, 0.664);
     border: solid 2px black;
+    border-radius: 5px;
+}
+
+img {
+    border-radius: 10px;
+    
 }

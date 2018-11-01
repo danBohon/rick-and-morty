@@ -15,7 +15,7 @@ export default function Results(props) {
 
   return (
     <div className="characterCard">
-        <img className="charImg" src={props.image} alt=""/>
+        <img className="charImg" src={props.image} alt={props.name}/>
         <div>{props.name}</div>
         <div>{props.species}</div>
         <div>{props.status}</div>

@@ -127,7 +127,7 @@ export default class Search extends Component {
     return (
         <div className="component">
             <header>
-                <img className="headerImg" src={headerImg} alt="Rick and Morty Image"/>
+                <img className="headerImg" src={headerImg} alt="Rick and Morty"/>
                 <div className ="search-bar">
                     <input className="search input" 
                         onChange={ (e) => this.handleChange(e.target.value) }
